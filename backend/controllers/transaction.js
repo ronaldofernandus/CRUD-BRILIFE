@@ -21,29 +21,31 @@ class TransactionController {
   }
   static async create(req, res) {
     try {
-      const id = +req.userData.id;
+      // const id = +req.userData.id;
       const { trans_date, dataProductId, qty_order } = req.body;
+      // console.log(qty_order);
       //buat table transaction
       let result = await data_transaction.create({
         trans_date,
         dataProductId,
         qty_order,
-        UserId: id,
+        // UserId: id,
       });
 
       //cari data product
-      let getPremium = await data_product.findOne();
-      // console.log(getPremium);
+      let getPremium = await data_product.findOne({});
+
+      console.log(getPremium);
 
       //mengambil data price di table product yang telah dicari diatas
 
-      let total_order = qty_order * getPremium;
+      let total_order = qty_order * tempPremium;
 
       res.status(201).json(result);
       // console.log(result);
     } catch (err) {
-      // console.log(err);
-      res.status(500).json(err);
+      console.log(err);
+      // res.status(500).json(err);
     }
   }
 }
