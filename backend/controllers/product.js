@@ -1,7 +1,7 @@
 const { data_product, data_transaction, User } = require("../models");
 
 class ProductController {
-  static async getProduct(req, res, next) {
+  static async getProduct(req, res) {
     try {
       let product = await data_product.findAll({});
 

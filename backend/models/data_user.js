@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: function (data_user, options) {
           data_user.password = encryptPwd(data_user.password);
-          //user.avatar = user.avatar || ('../images/ppdefault.jpg')
         },
         beforeUpdate: function (data_user, options) {
           data_user.password = encryptPwd(data_user.password);
