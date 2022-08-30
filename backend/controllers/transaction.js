@@ -21,7 +21,7 @@ class TransactionController {
   }
   static async create(req, res) {
     try {
-      // const id = +req.userData.id;
+      const id = +req.userData.id;
       const { trans_date, dataProductId, qty_order } = req.body;
       // console.log(qty_order);
       //buat table transaction
@@ -29,7 +29,7 @@ class TransactionController {
         trans_date,
         dataProductId,
         qty_order,
-        // UserId: id,
+        dataUserId: id,
       });
 
       //cari data product
