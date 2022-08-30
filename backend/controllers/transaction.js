@@ -28,12 +28,6 @@ class TransactionController {
       //buat table transaction
 
       const trans_date = new Date();
-      let result = await data_transaction.create({
-        trans_date,
-        dataProductId,
-        qty_order,
-        dataUserId: id,
-      });
 
       //cari data product
       let getPremium = await data_transaction.findOne({
@@ -54,12 +48,21 @@ class TransactionController {
       // let resultt = await data_product.findOne({
       //   where: { id: result.dataProductId },
       // });
-      let resultUpdate = await data_transaction.update(
-        {
-          total_order: total_order,
-        },
-        { where: { id: result.dataProductId } }
-      );
+
+      let result = await data_transaction.create({
+        trans_date,
+        dataProductId,
+        qty_order,
+        dataUserId: id,
+        total_order,
+      });
+
+      // let resultUpdate = await data_transaction.update(
+      //   {
+      //     total_order: total_order,
+      //   },
+      //   { where: { id: result.dataProductId } }
+      // );
 
       res.status(201).json(result);
       // console.log(result);
