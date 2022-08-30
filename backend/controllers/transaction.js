@@ -23,9 +23,11 @@ class TransactionController {
     try {
       const id = +req.userData.id;
 
-      const { trans_date, dataProductId, qty_order } = req.body;
+      const { dataProductId, qty_order } = req.body;
       // console.log(qty_order);
       //buat table transaction
+
+      const trans_date = new Date();
       let result = await data_transaction.create({
         trans_date,
         dataProductId,
@@ -49,6 +51,9 @@ class TransactionController {
 
       let total_order = qty_order * tempPremium;
 
+      // let resultt = await data_product.findOne({
+      //   where: { id: result.dataProductId },
+      // });
       let resultUpdate = await data_transaction.update(
         {
           total_order: total_order,

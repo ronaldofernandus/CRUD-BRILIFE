@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       trans_date: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
       dataUserId: {
