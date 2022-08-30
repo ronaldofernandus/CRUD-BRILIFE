@@ -43,12 +43,11 @@ class TransactionController {
 
       // console.log(getPremium);
       let tempPremium = getPremium.data_product.premium;
-      console.log(tempPremium);
+      // console.log(tempPremium);
 
       //mengambil data price di table product yang telah dicari diatas
 
       let total_order = qty_order * tempPremium;
-      console.log(total_order);
 
       let resultUpdate = await data_transaction.update(
         {
