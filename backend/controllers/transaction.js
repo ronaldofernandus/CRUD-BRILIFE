@@ -22,6 +22,7 @@ class TransactionController {
   static async create(req, res) {
     try {
       const id = +req.userData.id;
+
       const { trans_date, dataProductId, qty_order } = req.body;
       // console.log(qty_order);
       //buat table transaction
@@ -33,13 +34,27 @@ class TransactionController {
       });
 
       //cari data product
-      let getPremium = await data_product.findOne({});
+      let getPremium = await data_transaction.findOne({
+        include: [data_product],
+        // where: { dataProductId: result.dataProductId },
+      });
 
-      console.log(getPremium);
+      // console.log(getPremium);
+
+      // console.log(getPremium);
+      let tempPremium = getPremium.data_product.premium;
+      // console.log(tempPremium);
 
       //mengambil data price di table product yang telah dicari diatas
 
-      let total_order = qty_order * getPremium;
+      let total_order = qty_order * tempPremium;
+
+      let resultUpdate = await data_transaction.update(
+        {
+          total_order: total_order,
+        },
+        { where: { id: result.dataProductId } }
+      );
 
       res.status(201).json(result);
       // console.log(result);
