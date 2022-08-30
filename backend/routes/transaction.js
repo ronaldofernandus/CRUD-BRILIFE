@@ -6,7 +6,7 @@ transactionRoute.get("/", authentication, TransactionController.getTransaction);
 
 transactionRoute.post(
   "/transaksi",
-  //   authentication,
+    authentication,
   TransactionController.create
 );
 module.exports = transactionRoute;
