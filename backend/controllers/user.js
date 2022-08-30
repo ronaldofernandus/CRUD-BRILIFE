@@ -51,9 +51,9 @@ class UserController {
           message: `User not found`,
         });
       }
-     
     } catch (err) {
-      res.status(500).json(err);
+      console.log(err);
+      // res.status(500).json(err);
     }
   }
   static async update(req, res, next) {
