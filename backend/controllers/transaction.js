@@ -39,7 +39,7 @@ class TransactionController {
 
       //mengambil data price di table product yang telah dicari diatas
 
-      let total_order = qty_order * tempPremium;
+      let total_order = qty_order * getPremium;
 
       res.status(201).json(result);
       // console.log(result);
