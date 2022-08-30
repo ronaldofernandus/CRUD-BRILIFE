@@ -45,10 +45,6 @@ class TransactionController {
 
       let total_order = qty_order * tempPremium;
 
-      // let resultt = await data_product.findOne({
-      //   where: { id: result.dataProductId },
-      // });
-
       let result = await data_transaction.create({
         trans_date,
         dataProductId,
@@ -57,14 +53,14 @@ class TransactionController {
         total_order,
       });
 
-      // let resultUpdate = await data_transaction.update(
-      //   {
-      //     total_order: total_order,
-      //   },
-      //   { where: { id: result.dataProductId } }
-      // );
-
-      res.status(201).json(result);
+      result
+        ? res.status(201).json({
+            ResponseCode: "00",
+            ResponseDesc: { result },
+          })
+        : res.status(403).json({
+            ResponseCode: "01",
+          });
       // console.log(result);
     } catch (err) {
       console.log(err);
