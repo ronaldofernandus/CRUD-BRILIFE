@@ -8,7 +8,14 @@ class UserController {
       let users = await data_user.findAll({
         // include : [ Order, ShoppingCart]
       });
-      res.status(200).json(users);
+      users
+        ? res.status(201).json({
+            ResponseCode: "00",
+            ResponseDesc: { users },
+          })
+        : res.status(403).json({
+            ResponseCode: "01",
+          });
     } catch (err) {
       res.status(500).json(err);
     }

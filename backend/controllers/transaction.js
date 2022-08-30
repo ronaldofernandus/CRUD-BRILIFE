@@ -6,7 +6,14 @@ class TransactionController {
       let transaction = await data_transaction.findAll({});
       console.log(data_transaction);
 
-      res.status(200).json(transaction);
+      transaction
+        ? res.status(201).json({
+            ResponseCode: "00",
+            ResponseDesc: { transaction },
+          })
+        : res.status(403).json({
+            ResponseCode: "01",
+          });
     } catch (err) {
       // console.log(err);
       res.status(500).json(err);
@@ -26,18 +33,17 @@ class TransactionController {
 
       //cari data product
       let getPremium = await data_product.findOne();
+      // console.log(getPremium);
 
       //mengambil data price di table product yang telah dicari diatas
 
       let total_order = qty_order * getPremium;
 
-      console.log(total_order);
-
       res.status(201).json(result);
-      console.log(result);
+      // console.log(result);
     } catch (err) {
-      console.log(err);
-      // res.status(500).json(err);
+      // console.log(err);
+      res.status(500).json(err);
     }
   }
 }
